@@ -1,0 +1,29 @@
+<div class="container">
+<div class="table-responsive">
+  <h1>Listado de Usuarios</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Correo Electrónico</th>
+        <th>Estado</th>
+        <th>Cargo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.state }}</td>
+        <td>{{ user.area }}</td>
+        <td><a [routerLink]="['/home/aUsuarios', user.id]"><i class="fa fa-edit icono-edit"></i>Editar</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

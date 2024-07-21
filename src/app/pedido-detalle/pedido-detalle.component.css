@@ -1,0 +1,18 @@
+.container-fluid {
+  padding-top: 30px; /* Añade espacio alrededor del texto y el formulario */
+}
+
+h1 {
+  font-size: 1.5rem; /* Tamaño del texto responsivo */
+  margin: 0; /* Elimina el margen superior predeterminado del encabezado */
+  font-weight: bold; 
+  margin-bottom: 0px;      
+}
+
+.lightgreen {
+  background-color: rgb(191, 242, 205);
+}
+
+h4 {
+  font-weight: bold;     
+}

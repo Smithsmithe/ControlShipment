@@ -1,0 +1,121 @@
+<div class="row">
+ <!-- Barra de Navegación -->
+<nav id="barnav" class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container-fluid">
+    <button class="btn" type="button" (click)="toggleSidebar()">
+      <span class="fa-solid fa-bars"></span>
+    </button>
+    <!-- Menú de Usuario -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown" [class.show]="isMenuOpen">
+        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="userDropdown" role="button" (click)="toggleUserMenu($event)">
+          <i class="fa-regular fa-user"></i> Perfil
+        </a>
+        <div [ngbCollapse]="!menuOpen" class="dropdown-menu" aria-labelledby="userDropdown" #userDropdownMenu>
+          <!-- Contenido del menú desplegable -->
+          <a class="dropdown-item" href="#" routerLink="/home/cpassword" routerLinkActive="active">
+            <i class="fa-solid fa-key"></i> Cambiar Contraseña
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item"(click)="logout()">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+          </a>
+        </div>        
+      </li>
+    </ul>
+  </div>
+</nav>
+  <!-- Sidebar -->
+  <div id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar" *ngIf="sidebarVisible">
+    <div class="position-sticky">
+      <img src="/assets/logo2.png" alt="Logo" class="img-fluid imagen">
+      <ul class="nav flex-column">
+        <!-- Logística con menú desplegable -->
+        <li  class="nav-item" [ngClass]="{'active-menu': activeMenu === 'logistica'}">
+          <a class="nav-link main-menu" (click)="setActiveMenu('logistica')">
+            Logística
+            <i [ngClass]="{'fa-chevron-down': isMenuOpen('logistica'), 'fa-chevron-right': !isMenuOpen('logistica')}" class="fas fa" style="float: right;"></i>
+          </a>
+          <div [ngbCollapse]="activeMenu !== 'logistica'" class="sub-menu">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/home/load" routerLinkActive="active">
+                  <i class="fa-solid fa-upload" style="margin-right: 10px;"></i>Carga
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/home/pedidos" routerLinkActive="active" >
+                  <i class="fa-regular fa-rectangle-list" style="margin-right: 10px;"></i>Rutas
+                </a>
+              </li>              
+              <!-- Agrega más elementos al menú desplegable aquí si es necesario -->
+            </ul>
+          </div>
+        </li>
+        <hr class="sidebar-divider">
+        <!-- Transporte con menú desplegable -->
+        <li class="nav-item" [ngClass]="{'active-menu': activeMenu === 'transporte'}">
+          <a class="nav-link main-menu" (click)="setActiveMenu('transporte')">
+            Transporte
+            <i [ngClass]="{'fa-chevron-down': isMenuOpen('transporte'), 'fa-chevron-right': !isMenuOpen('transporte')}" class="fas fa" style="float: right;"></i>
+          </a>
+          <div [ngbCollapse]="activeMenu !== 'transporte'" class="sub-menu">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/home/pasignados" routerLinkActive="active">
+                  <i class="fa-solid fa-truck-fast" style="margin-right: 10px;"></i>Mi Cargue
+                </a>
+              </li>
+              <!-- Agrega más elementos al menú desplegable aquí si es necesario -->
+            </ul>
+          </div>
+        </li>        
+        <hr class="sidebar-divider">
+        <!-- Cobranza con menú desplegable -->
+        <li class="nav-item" [ngClass]="{'active-menu': activeMenu === 'cobranza'}">
+          <a class="nav-link main-menu" (click)="setActiveMenu('cobranza')">
+            Consulta
+            <i [ngClass]="{'fa-chevron-down': isMenuOpen('cobranza'), 'fa-chevron-right': !isMenuOpen('cobranza')}" class="fas fa" style="float: right;"></i>
+          </a>
+          <div [ngbCollapse]="activeMenu !== 'cobranza'" class="sub-menu">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/home/consulta" routerLinkActive="active">
+                  <i class="fa-solid fa-magnifying-glass" style="margin-right: 10px;"></i>Estado
+                </a>
+              </li>
+              <!-- Agrega más elementos al menú desplegable aquí si es necesario -->
+            </ul>
+          </div>
+        </li>
+        <hr class="sidebar-divider">
+        <!-- Administrador con menú desplegable -->
+        <li class="nav-item" [ngClass]="{'active-menu': activeMenu === 'admin'}">
+          <a class="nav-link main-menu" (click)="setActiveMenu('admin')">
+            Administrador
+            <i [ngClass]="{'fa-chevron-down': isMenuOpen('admin'), 'fa-chevron-right': !isMenuOpen('admin')}" class="fas fa" style="float: right;"></i>
+          </a>
+          <div [ngbCollapse]="activeMenu !== 'admin'" class="sub-menu">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/home/cUsuarios" routerLinkActive="active">
+                  <i class="fa-solid fa-user-plus" style="margin-right: 10px;"></i> Crear Usuarios
+                </a>
+              </li>
+                <a class="nav-link" routerLink="/home/lUsuarios" routerLinkActive="active">
+                  <i class="fa-regular fa-address-card" style="margin-right: 10px;"></i> Lista de Usuarios
+                </a>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Área de Contenido Principal -->
+  <main id="Pc" class="col-md-9 col-lg-10 px-md-4" [ngStyle]="{'margin-left.px': sidebarVisible ? '250' : '0'}">
+        <div class="contenido-principal">
+      <router-outlet></router-outlet> <!-- Aquí se cargará el contenido de "Pedido-Detalle" -->
+    </div>
+  </main>
+</div>

@@ -1,0 +1,8 @@
+<div class="modal-header" [ngClass]="{'bg-success': isSuccess, 'bg-danger': !isSuccess}">
+  <h2 class="modal-title">{{ isSuccess ? 'Proceso Exitoso' : 'No fue posible procesar la solicitud' }}</h2>
+  <button type="button" class="btn-close" (click)="reloadParentPage()"></button>
+</div>
+<div class="modal-body text-center">
+  <h1>{{ message }}</h1>
+  <button type="button" class="btn" [ngClass]="{'btn-success': isSuccess, 'btn-danger': !isSuccess}" data-dismiss="modal" (click)="reloadParentPage()">Cerrar</button>
+</div>

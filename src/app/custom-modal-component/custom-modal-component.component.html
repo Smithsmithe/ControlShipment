@@ -1,0 +1,8 @@
+<div class="modal-header" [ngClass]="{'bg-success': isSuccess, 'bg-danger': !isSuccess}">
+  <button type="button" class="btn-close" aria-label="Cerrar" (click)="closeModal()"></button>
+</div>
+<div class="modal-body text-center">
+  <h2>{{ isSuccess ? '' : 'Acceso Denegado' }}</h2>
+  <h2>{{ message }}</h2>
+  <button type="button" class="btn" [ngClass]="{'btn-success': isSuccess, 'btn-danger': !isSuccess}" (click)="closeModal()">Cerrar</button>
+</div>

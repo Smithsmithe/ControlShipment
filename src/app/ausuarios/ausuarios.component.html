@@ -1,0 +1,141 @@
+<form [formGroup]="registerForm" class="row g-3" id="fRegistro" >
+    <div><h1>Actualizar Usuario</h1></div>
+    <div class="col-md-4">
+        <label for="validationServer01" class="form-label">Nombres</label>
+        <input type="text" class="form-control" id="validationServer01" formControlName="name" required 
+          [ngClass]="{'is-invalid': registerForm.get('name')?.touched && registerForm.get('name')?.invalid, 
+                      'is-valid': registerForm.get('name')?.touched && registerForm.get('name')?.valid}"
+          (input)="registerForm.get('name')?.markAsTouched()">
+        <div class="invalid-feedback" *ngIf="registerForm.get('name')?.hasError('required')">
+          El nombre es requerido.
+        </div>
+        <div class="invalid-feedback" *ngIf="registerForm.get('name')?.hasError('minLength')">
+          El nombre debe tener al menos 3 caracteres que no sean nuemeros.
+        </div>
+        <div class="valid-feedback" *ngIf="registerForm.get('name')?.valid">
+          Correcto.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="validationServer01" class="form-label">Apellidos</label>
+        <input type="text" class="form-control" id="validationServer01" formControlName="lastName" required 
+          [ngClass]="{'is-invalid': registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid, 
+                      'is-valid': registerForm.get('lastName')?.touched && registerForm.get('lastName')?.valid}"
+          (input)="registerForm.get('lastName')?.markAsTouched()">
+        <div class="invalid-feedback" *ngIf="registerForm.get('lastName')?.hasError('required')">
+          El Apellido es requerido.
+        </div>
+        <div class="invalid-feedback" *ngIf="registerForm.get('lastName')?.hasError('minLength')">
+            El apellido debe tener al menos 3 caracteres que no sean nuemeros
+        </div>
+        <div class="valid-feedback" *ngIf="registerForm.get('lastName')?.valid">
+          Correcto.
+        </div>
+      </div>
+    <div class="col-md-4">
+      <label for="validationServerUsername" class="form-label">Correo Electrónico</label>
+      <input type="email" class="form-control" id="validationServerUsername" formControlName="email" required 
+        [ngClass]="{'is-invalid': registerForm.get('email')?.touched && registerForm.get('email')?.invalid, 
+                    'is-valid': registerForm.get('email')?.touched && registerForm.get('email')?.valid}"
+                    (input)="registerForm.get('email')?.markAsTouched()">
+      <div class="invalid-feedback" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')">
+        El correo electrónico es requerido.
+      </div>
+      <div class="invalid-feedback" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('invalidDomain')">
+        El correo electrónico no es válido.
+      </div>
+      <div class="valid-feedback" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.valid">
+        Correcto.
+      </div>
+    </div>
+    <div class="col-md-3">
+        <label for="validationServer04" class="form-label">Estado</label>
+        <select class="form-select" id="validationServer04" formControlName="state" required 
+          [ngClass]="{'is-invalid': registerForm.get('state')?.touched && registerForm.get('state')?.invalid, 
+                      'is-valid': registerForm.get('state')?.touched && registerForm.get('state')?.valid}"
+          (change)="registerForm.get('state')?.markAsTouched()">
+          <option selected disabled value="">Seleccionar...</option>
+          <option value="activo">Activo</option>
+          <option value="inactivo">Inactivo</option>
+          <option value="i">I</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="registerForm.get('state')?.touched && registerForm.get('state')?.hasError('required')">
+          Por favor, seleccione un estado.
+        </div>
+        <div class="invalid-feedback" *ngIf="registerForm.get('state')?.touched && registerForm.get('state')?.hasError('invalidState')">
+            El valor no es valido
+        </div>
+        <div class="valid-feedback" *ngIf="registerForm.get('state')?.touched && registerForm.get('state')?.valid">
+          Correcto.
+        </div>
+      </div>
+      <div class="col-md-3">
+        <label for="validationServer05" class="form-label">Area</label>
+        <select class="form-select" id="validationServer05" formControlName="area" required 
+          [ngClass]="{'is-invalid': registerForm.get('area')?.touched && registerForm.get('area')?.invalid, 
+                      'is-valid': registerForm.get('area')?.touched && registerForm.get('area')?.valid}"
+          (change)="registerForm.get('area')?.markAsTouched()">
+          <option selected disabled value="">Seleccionar...</option>
+          <option value="5">Logística</option>
+          <option value="6">Transporte</option>
+          <option value="4">Administración</option>
+          <option value="7">Cobranza</option>
+          <option value="prueba">p</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="registerForm.get('area')?.touched && registerForm.get('area')?.hasError('required')">
+          Por favor, seleccione un estado.
+        </div>
+        <div class="invalid-feedback" *ngIf="registerForm.get('area')?.touched && registerForm.get('area')?.hasError('invalidStatetwo')">
+          El valor no es válido.
+        </div>
+        <div class="valid-feedback" *ngIf="registerForm.get('area')?.touched && registerForm.get('area')?.valid">
+          Correcto.
+        </div>
+      </div>
+
+      <div class="col-md-3" *ngIf="showTransporteFields" >        
+        <label for="validationServer06" class="form-label">Placa</label>
+        <input type="text" class="form-control" id="validationServer06" formControlName="placa" required 
+          [ngClass]="{'is-invalid': registerForm.get('placa')?.touched && registerForm.get('placa')?.invalid, 
+                      'is-valid': registerForm.get('placa')?.touched && registerForm.get('placa')?.valid}"
+          (input)="registerForm.get('placa')?.markAsTouched()">
+        <div class="invalid-feedback" *ngIf="registerForm.get('placa')?.touched && registerForm.get('placa')?.hasError('required')">
+            El campo "Placa" es requerido.
+        </div>
+        <div class="invalid-feedback" *ngIf="registerForm.get('placa')?.touched && registerForm.get('placa')?.hasError('invalidPlaca')">
+            El campo "Placa" debe contener al menos 3 letras y 2 números y no mas de 6 digitos.
+        </div>
+        <div class="valid-feedback" *ngIf="registerForm.get('placa')?.touched && registerForm.get('placa')?.valid">
+          Correcto.
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="showTransporteFields">
+        <label for="validationServer07" class="form-label">Transportadora</label>
+        <select class="form-select" id="validationServer07" formControlName="transportadora" required 
+          [ngClass]="{'is-invalid': registerForm.get('transportadora')?.touched && registerForm.get('transportadora')?.invalid, 
+                      'is-valid': registerForm.get('transportadora')?.touched && registerForm.get('transportadora')?.valid}"
+          (change)="registerForm.get('transportadora')?.markAsTouched()">
+          <option selected disabled value="">Seleccionar...</option>
+          <option value="2">Servientrega</option>
+          <option value="1">Envia</option>
+          <option value="3">Ega_Kat</option>
+          <option value="4">Ditransa</option>          
+          <option value="5">Deprisa</option>
+          <option value="p">p</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="registerForm.get('transportadora')?.touched && registerForm.get('transportadora')?.hasError('required')">
+          Por favor, seleccione una transportadora.
+        </div>
+        <div class="invalid-feedback" *ngIf="registerForm.get('transportadora')?.touched && registerForm.get('transportadora')?.hasError('invalidTransportadora')">
+          El valor no es válido.
+        </div>
+        <div class="valid-feedback" *ngIf="registerForm.get('transportadora')?.touched && registerForm.get('transportadora')?.valid">
+          Correcto.
+        </div>
+      </div> 
+    <div>
+      <button class="btn btn-primary" (click)="actualizarUsuario()" [disabled]="registerForm.invalid">Actualizar</button>
+    </div> 
+ </form>
+  
+  

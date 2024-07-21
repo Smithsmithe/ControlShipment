@@ -1,0 +1,14 @@
+.container {
+  margin-top: 30px;
+  }
+
+h1 {
+    font-size: 1.5rem; /* Tamaño del texto responsivo */
+    margin: 0; /* Elimina el margen superior predeterminado del encabezado */
+    font-weight: bold;     
+    margin-bottom: 0px;       
+  }
+
+  .icono-edit {
+    font-size: 22px; /* Tamaño en píxeles o el valor que desees */
+  }

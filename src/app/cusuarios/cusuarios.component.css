@@ -1,0 +1,19 @@
+  h1 {
+    font-size: 1.5rem; /* Tamaño del texto responsivo */
+    margin: 0; /* Elimina el margen superior predeterminado del encabezado */
+    font-weight: bold;    
+  }
+#fRegistro{
+    margin: 20px 50px 0px 50px;
+    border: 1px solid #555; /* Borde gris */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px; /* Espacio interno */
+    font-weight: bold;        
+}
+/* Estilo para todos los input */
+input ,select{
+  border: 1px solid #555; /* Borde oscuro de 1 píxel de ancho */
+  /* Otros estilos, como color de fondo o color de texto, si es necesario */
+}
+
+

@@ -1,0 +1,90 @@
+
+.imagen {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 0px 0px 30px 0px;
+}
+
+.btn-dark:hover .navbar-toggler-icon {
+  filter: brightness(0.8); 
+}
+
+#sidebar {
+  position: fixed;
+  height: 100%;
+  margin-top: 38px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #4e73df;
+  transition: width 0.5s;
+}
+
+.main-menu {
+  color: #000000;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.main-menu:hover{
+  color:white;
+}
+
+.sub-menu .nav-link {  
+  color: #03105d;
+  font-weight: bold;
+  padding-left: 20px;
+  font-size: 15px;
+}
+
+.sub-menu .nav-link:hover {
+  color: white;
+}
+
+#barnav{
+  background-color: #4e73df;
+  color: #000000;
+}
+
+#bonav{
+  border: none;
+  font-size: 17px;
+}
+
+#bonav:hover{
+  color: white;
+}
+
+.align-right {
+  margin-left: auto;
+}
+
+.container{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.fas.fa {
+  float: right;
+  margin-right: 0px;
+}
+
+#Pc{
+  margin-top: 38px;
+}
+
+.navbar-nav.ml-auto .dropdown-menu {
+  position: absolute;
+  right: 0;
+  border-color: #4e73df ;
+}
+
+/* Estilo para la barra de navegación colapsada */
+@media (max-width: 500px) {
+}
+
+
+
+

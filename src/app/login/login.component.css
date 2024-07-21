@@ -1,0 +1,55 @@
+/* Estilos para el contenedor del formulario de inicio de sesión */
+.login-container {
+    text-align: center; /* Centra el contenido horizontalmente */
+    padding: 20px; /* Agrega espaciado interno */
+    border-radius: 8px; /* Añade bordes redondeados al contenedor */
+    margin: 0 auto; /* Centra el contenedor verticalmente */
+    max-width: 400px; /* Limita el ancho del contenedor */
+    padding-top: 100px;
+  }
+  
+.avatar{    
+    padding-bottom: 30px;
+
+}
+
+  /* Estilos para los campos de inicio de sesión y el botón */
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  button[type="submit"] {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 10px; /* Espaciado interno */
+    margin: 10px 0; /* Espaciado externo (arriba y abajo) */
+    border: none; /* Sin bordes */
+    border-radius: 4px; /* Bordes redondeados */
+  }
+  
+  /* Estilos para el botón de inicio de sesión */
+  button[type="submit"] {
+    background-color: #007bff; /* Color de fondo azul */
+    color: white; /* Color del texto blanco */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    margin-top: 10px; /* Espaciado en la parte superior del botón para centrarlo verticalmente */
+  }
+  
+ /* Estilos para el botón de inicio de sesión al pasar el cursor sobre él */
+ button[type="submit"]:hover {
+      background-color: #0056b3; /* Color de fondo azul más oscuro al pasar el cursor */
+}
+
+.email-input {
+  border: 2px solid transparent; /* Borde transparente */
+}
+
+.email-input.valid {
+  border-color: green; /* Borde verde para un correo válido */
+}
+
+.email-input.invalid {
+  border-color: red; /* Borde rojo para un correo inválido */
+}
+
+input[name="correo"]:invalid {
+  border-color: red;
+}

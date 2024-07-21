@@ -1,0 +1,94 @@
+<div class="container-fluid">
+  <h1 class="mt-1">Ruta Asignada</h1>
+  <div class="col-md-12">
+    <!-- Campo para asignar al vehículo con placa -->
+    <div class="card" style="border: none;">
+      <div class="card-body row align-items-center">
+        <div class="col-md-2 " style=" padding-left: 0px;">
+          <div class="form-group">
+            <label for="placaSelect"><h4>Seleccionar Placa:</h4></label>
+            <select id="placaSelect" class="form-control form-control-sm" [(ngModel)]="selectedPlaca" (change)="updateTransportData()" style="width: 150px; font-weight: bold; color: #0056b3;">
+              <option *ngFor="let conductor of conductores" [value]="conductor.placa">{{ conductor.placa }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="text-right" *ngIf="selectedPlaca">
+            <div class="text-right">
+              <strong style="display: inline-block; width: 120px;">Conductor:</strong> {{ nombreConductor }}
+            </div>
+            <div class="text-right">
+              <strong style="display: inline-block; width: 120px;">Transportadora:</strong> {{ nombreTransportadora }}
+            </div></div>
+        </div>
+        <div class="col-md-2"  *ngIf="selectedPlaca">
+          <button class="btn btn-primary btn-lg" (click)="finalizarCargue()" [disabled]="!checkAllCardsVerified()"[style.border]="!checkAllCardsVerified ? '10px solid #BFF2CD' : '3px solid'"
+          >Verificación finalizada</button>
+        </div>
+     </div>
+    </div>
+  </div>
+ <!-- Tarjetas de envío -->
+<div *ngIf="response && response.length > 0" >
+  <div *ngFor="let shipment of response" class="card mt-4 col-12 d-flex flex-column" >
+    <div class="card-header" [ngClass]="{ 'bg-lightgreen': checkAllDetailsFilled(shipment) }">
+      <h4 class="mb-0 d-flex justify-content-between">
+        <span>
+          <strong>Nombre cliente:</strong> {{ shipment.nombre_cliente }} |
+          <strong>Fecha:</strong> {{ shipment.fecha_pedido }}
+        </span>
+        <button class="btn btn-link align-self-center" (click)="verDetalle(shipment)">
+          <i class="fa-solid fa-folder-open" style="color: #0056b3;"></i> Ver Detalle
+        </button>
+      </h4>
+
+      <h5>
+        <strong>Dirección:</strong> {{ shipment.direccion }} |
+        <strong>Barrio:</strong> {{ shipment.barrio }} |
+        <strong>Ciudad:</strong> {{ shipment.ciudad }} |
+        <strong>Teléfono:</strong> {{ shipment.telefono }}
+      </h5>
+    </div>
+
+    <div *ngIf="shipment.shipmentDetails" class="table-responsive mt-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>Descripción</th>
+            <th class="text-center">Cantidad</th>
+            <th>Empaque</th>
+            <th>Estado</th>
+            <th class="text-nowrap">Cantidad recibida</th>           
+            <th> Observaciones </th>
+            <th class="text-center">Verificado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detalle of shipment.shipmentDetails">
+            <td>{{ detalle.sku }}</td>
+            <td>{{ detalle.descripcion }}</td>
+            <td class="text-center">{{ detalle.cantidad_pedido }}</td>
+            <td>{{ detalle.unidadempaque }}</td>
+            <td>
+              <select [(ngModel)]="detalle.estadoSeleccionado" class="form-select">
+                <option *ngFor="let estado of estadosProducto" [value]="estado.id_Estado">{{ estado.descripcion }}</option>
+              </select>
+            </td>
+            <td class="text-center">
+              <input type="number" [(ngModel)]="detalle.cantidadRecibida" class="form-control text-center" pattern="[0-9]+" required style="max-width: 60px;" (input)="validateInput($event, detalle)">
+            </td>
+            <td>
+              <textarea [(ngModel)]="detalle.observaciones" class="form-control" rows="2" maxlength="400"></textarea>
+            </td>
+            <td class="text-center">
+              <input type="checkbox" [(ngModel)]="detalle.check" class="form-check-input">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Fin de la tabla de detalles -->
+    </div>
+    </div>
+    

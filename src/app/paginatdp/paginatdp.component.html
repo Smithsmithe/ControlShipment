@@ -1,0 +1,34 @@
+<!-- paginatdp.component.html -->
+<div class="container mt-5 border rounded p-4 text-center">
+    <h1>Aceptación de Tratamiento de Datos Personales</h1>
+  
+    <p>Por favor, lee cuidadosamente la siguiente información antes de continuar:</p>
+  
+    <div>
+      <h2>1. Tratamiento de Datos Personales</h2>
+      <p>Control Shipment recopila y procesa tus datos personales con el propósito de administrar y supervisar la entrega de mercancías entre el operador logístico y el transportista. Además, se utilizan para facilitar la gestión de reclamaciones, brindando una experiencia eficiente y segura a través de nuestra aplicación.</p>
+    </div>
+  
+    <div>
+      <h2>2. Datos Recopilados</h2>
+      <p>Los datos personales que recopilamos pueden incluir, entre otros, tu nombre, número de documento, dirección de correo electrónico, y detalles relacionados con el proceso de entrega de mercancía.</p>
+    </div>
+  
+    <div>
+      <h2>3. Derechos del Titular de los Datos</h2>
+      <p>Como titular de los datos personales, tienes el derecho de conocer, actualizar y rectificar la información que tenemos sobre ti, así como de solicitar la eliminación de tus datos cuando consideres que no se están tratando adecuadamente.</p>
+    </div>
+  
+    <div>
+      <h2>4. Consentimiento</h2>
+      <p>
+        Al hacer clic en el botón "Acepto" a continuación, confirmas que has leído y entendido nuestra política de tratamiento de datos personales y otorgas tu consentimiento para que Control Shipment trate tus datos de acuerdo con dicha política.
+        <a (click)="redirigirAEnlaceExterno()" style="cursor: pointer; color: blue; text-decoration: underline;" target="_blank">Ver ley de tratamiento de datos personales</a>
+      </p>
+    </div>
+  
+    <button type="button" class="btn btn-primary mt-3" (click)="acceptDataTreatment()">Acepto</button>
+  
+    <!-- Botón "No Acepto" que redirige al login -->
+    <a routerLink="/login" class="btn btn-danger mt-3">No Acepto</a>
+</div>

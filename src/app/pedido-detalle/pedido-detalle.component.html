@@ -1,0 +1,100 @@
+<div class="container-fluid">
+  <h1 class="mt-1">Rutas por Asignar</h1>
+  <!-- Contenedor para alinear horizontalmente la tarjeta y el campo "Selecciona una ruta" -->
+  <div class="row">
+    <!-- Campo para seleccionar una ruta -->
+    <div class="col-md-4 mb-4">
+      <div class="form-group mt-4">
+        <label for="rutaSelect"><h4>Selecciona una ruta:</h4></label>
+        <select class="form-control form-control-sm" id="rutaSelect" [(ngModel)]="rutaSeleccionada" style="width: 150px; font-weight: bold; color: #0056b3;" (change)="toggleDetails(rutaSeleccionada)">
+          <option *ngFor="let ruta of listaDeRutas" [value]="ruta.idRuta">Ruta <b>{{ ruta.idRuta }}</b></option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Tarjeta para el campo "Asignar al vehículo con placa:" y el botón "Crear Shipment" -->
+    <div class="col-md-7" *ngIf="showDetails[rutaSeleccionada]">
+      <div class="card"[style.border]="cabeceraColor ? '3px solid #0056b3' : '3px solid'">
+        <div class="card-body row align-items-center">
+          <div class="col-md-4">
+            <!-- Campo para asignar al vehículo con placa -->
+            <div class="form-group text-center">
+              <label for="placaSelect" style="font-weight: bold;">Placa:</label>
+              <select id="placaSelect" class="form-control mx-auto" [(ngModel)]="selectedPlaca" (change)="updateTransportData()" style="width: 90px; font-weight: bold; color: #0056b3;">
+                <option *ngFor="let conductor of conductores" [value]="conductor.placa">{{ conductor.placa }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="text-right">
+              <!-- Mostrar nombre y transportadora -->
+              <strong>Nombre Conductor:</strong> {{ nombreConductor }} <strong>Transportadora:</strong> {{ nombreTransportadora }}
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" [disabled]="!cabeceraColor || !selectedPlaca" (click)="crearShipment()" >Asignar Ruta</button>
+      </div>
+    </div>
+  </div>
+
+      <!-- Mostrar detalles de los pedidos por la ruta seleccionada -->
+  <ng-container *ngFor="let pedido of pedidosPorRuta; let i = index">
+    <!-- Tarjeta de cliente y detalles de pedido -->
+    <div class="card mt-4 col-12 d-flex flex-column">
+      <div class="card-header" [ngClass]="cabeceraColor">
+        <h4 class="mb-0 d-flex justify-content-between">
+          <span>
+            <strong>Nombre cliente:</strong> <span>&nbsp;{{pedido.nombre_Cliente }}</span> | 
+            <strong>Fecha:</strong> {{ pedido.fecha_Pedido }}
+          </span>
+          <button class="btn btn-link align-self-center" (click)="loadDetallePedido(pedido.id_Pedido, i)">
+            <i class="fa-solid fa-folder-open" style="color: #0056b3;"></i> Ver Detalle
+          </button>
+        </h4>
+      
+        <h5>
+          <strong>Dirección:</strong>{{ pedido.direccion }} | 
+          <strong>Barrio:</strong> {{ pedido.barrio }} | 
+          <strong>Ciudad:</strong> {{ pedido.ciudad }} | 
+          <strong>Teléfono:</strong> {{ pedido.telefono }}
+        </h5>
+      </div>
+      
+      <div *ngIf="detallesPedido[pedido.id_Pedido]" class="card-body" style="overflow-x: auto;">
+        <!-- Tabla estilizada con Bootstrap para los detalles -->
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Descripción</th>
+                <th class="text-center" >Cantidad</th>
+                <th>Empaque</th>
+                <th>Estado</th>
+                <th class="text-center">Verificado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detalle of detallesPedido[pedido.id_Pedido]">
+                <!-- Verificar si detalle está definido antes de acceder a sus propiedades -->
+                <td>{{ detalle?.sku }}</td>
+                <td>{{ detalle?.descripcion }}</td>
+                <td class="text-center">{{ detalle?.cantidad }}</td>
+                <td>{{ detalle?.unidadEmpaque }}</td>
+                <td>
+                  <select [(ngModel)]="detalle.estadoSeleccionado" (change)="checkAllVerified()">
+                    <option *ngFor="let estado of estadosProducto" [value]="estado.id_Estado">{{ estado.descripcion }} </option>
+                  </select>
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" [(ngModel)]="detalle.check" class="form-check-input" (change)="checkAllVerified()">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </ng-container>  
+</div>
+
